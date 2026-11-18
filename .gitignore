@@ -1,0 +1,3 @@
+platform/worker/index.js
+platform/.dev.vars
+platform/.wrangler/

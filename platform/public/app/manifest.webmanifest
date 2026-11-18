@@ -1,0 +1,32 @@
+{
+ "name": "أمان للكهرباء والكاميرات",
+ "short_name": "أمان",
+ "description": "اطلب كهرباء، كاميرات، أنظمة إنذار وصوت، وصيانة",
+ "lang": "ar",
+ "dir": "rtl",
+ "start_url": "/app/",
+ "scope": "/app/",
+ "id": "/app/",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#0c2440",
+ "theme_color": "#0c2440",
+ "icons": [
+  {
+   "src": "/app/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "/app/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "/app/icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

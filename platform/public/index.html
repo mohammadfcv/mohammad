@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>منصة أمان</title>
+<meta name="description" content="منصة طلبات الكهرباء والكاميرات وأنظمة الإنذار والصوت: تطبيق للزبائن وتطبيق لإدارة المحل.">
+<meta name="theme-color" content="#0c2440">
+<link rel="icon" type="image/png" href="/app/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Alexandria:wght@600;700;800&display=swap">
+<style>
+:root{--ink:#0c2440;--ink-2:#163a63;--amber:#ffb020;--on-amber:#231700;--bg:#eef2f7;--card:#fff;--fg:#101b27;--muted:#5d6d7e;--line:#dbe2ea;--wa:#1fae58;
+  --f-d:"Alexandria","Almarai",system-ui,sans-serif;--f-b:"Almarai",system-ui,"Segoe UI",Tahoma,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#070c12;--card:#15202b;--fg:#e9f0f7;--muted:#9aabbd;--line:#26364a;--ink:#0e2b4c;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-b);line-height:1.6}
+h1,h2,h3{font-family:var(--f-d);margin:0;text-wrap:balance}
+p{margin:0}
+.hero{background:var(--ink);color:#fff;padding:calc(36px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) 110px max(20px,env(safe-area-inset-left,0px));position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:24px 24px}
+.wrap{max-width:980px;margin:0 auto;position:relative}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+.brand i{width:48px;height:48px;border-radius:14px;background:var(--amber);color:var(--on-amber);display:grid;place-items:center}
+.brand b{font-family:var(--f-d);font-size:18px}
+.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.25;max-width:20ch}
+.hero p{opacity:.8;margin-top:12px;max-width:52ch;font-size:16.5px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.tags span{font-size:13px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15)}
+main{padding:0 max(20px,env(safe-area-inset-right,0px)) 40px max(20px,env(safe-area-inset-left,0px));margin-top:-74px;position:relative}
+.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:20px}
+.app{background:var(--card);border-radius:26px;padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:0 1px 2px rgba(12,36,64,.06),0 20px 40px -24px rgba(12,36,64,.35)}
+.head{display:flex;gap:14px;align-items:center}
+.head img{width:64px;height:64px;border-radius:18px;flex:none}
+.head h2{font-size:21px}
+.head span{color:var(--muted);font-size:14px}
+.app ul{margin:0;padding-inline-start:20px;color:var(--muted);font-size:14.5px;display:grid;gap:4px}
+.qr-row{display:flex;gap:16px;align-items:center;background:var(--bg);border-radius:18px;padding:14px}
+.qr{width:112px;height:112px;background:#fff;border-radius:12px;padding:8px;flex:none}
+.qr img,.qr canvas{width:100%!important;height:100%!important}
+.qr-row p{font-size:13.5px;color:var(--muted)}
+.qr-row code{display:block;direction:ltr;text-align:right;font-size:13px;color:var(--fg);word-break:break-all;margin-top:6px;font-family:ui-monospace,monospace}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{flex:1;min-width:140px;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 16px;border-radius:15px;font-weight:700;text-decoration:none;font-size:15px;border:0;cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--amber);color:var(--on-amber)}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.ghost{background:var(--bg);color:var(--fg);border:1px solid var(--line)}
+.steps{margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
+.step{background:var(--card);border-radius:22px;padding:20px;border:1px solid var(--line)}
+.step h3{font-size:17px;margin-bottom:10px;display:flex;gap:8px;align-items:center}
+.step ol{margin:0;padding-inline-start:20px;color:var(--muted);display:grid;gap:6px;font-size:14.5px}
+.step b{color:var(--fg)}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 20px 30px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="brand"><i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></i><b id="shop">أمان للكهرباء والكاميرات</b></div>
+  <h1>كهرباء، كاميرات، إنذار وأنظمة صوت. اطلب من جوالك.</h1>
+  <p>تطبيق للزبائن يطلبوا فيه قطع وصيانة ويتابعوا طلباتهم، وتطبيق لصاحب المحل يستلم الطلبات ويرد عليها وينشر العروض.</p>
+  <div class="tags"><span>بدون متجر تطبيقات</span><span>أندرويد وآيفون</span><span>بدون تسجيل حساب</span></div>
+</div></header>
+<main><div class="wrap">
+  <div class="apps">
+    <section class="app">
+      <div class="head"><img src="/app/icon-192.png" alt=""><div><h2>تطبيق الزبون</h2><span>للزبائن: الطلب والعروض والمتابعة</span></div></div>
+      <ul><li>قطع ومعدات: كاميرات، كهرباء، إنذار، صوت</li><li>طلب صيانة مع صور للمشكلة</li><li>تصميم منظومة كاميرات مع السعر فوراً</li><li>تتبّع الطلب ومحادثة مع المحل</li></ul>
+      <div class="qr-row"><div class="qr" id="qr-app"></div><div><p>امسح الكود بكاميرا الجوال، أو ابعت الرابط للزبائن:</p><code id="url-app"></code></div></div>
+      <div class="btns"><a class="btn primary" href="/app/">افتح تطبيق الزبون</a><button class="btn ghost" data-copy="app">نسخ الرابط</button></div>
+    </section>
+    <section class="app">
+      <div class="head"><img src="/admin/icon-192.png" alt=""><div><h2>تطبيق الإدارة</h2><span>لصاحب المحل فقط، بيحتاج رمز دخول</span></div></div>
+      <ul><li>الطلبات الواردة لحظة بلحظة مع تنبيه صوتي</li><li>تغيير حالة الطلب والتواصل واتساب واتصال وشات</li><li>تعديل المنتجات والأسعار</li><li>نشر العروض والإعدادات</li></ul>
+      <div class="qr-row"><div class="qr" id="qr-admin"></div><div><p>افتحو على جوال صاحب المحل وثبّتو:</p><code id="url-admin"></code></div></div>
+      <div class="btns"><a class="btn dark" href="/admin/">افتح تطبيق الإدارة</a><button class="btn ghost" data-copy="admin">نسخ الرابط</button></div>
+    </section>
+  </div>
+  <div class="steps">
+    <div class="step"><h3>📱 التثبيت على أندرويد</h3><ol><li>افتح الرابط بـ <b>Chrome</b></li><li>اضغط <b>ثبّت التطبيق</b> جوا التطبيق، أو من القائمة ⋮ اختار <b>تثبيت التطبيق</b></li><li>بتطلع الأيقونة على الشاشة الرئيسية</li></ol></div>
+    <div class="step"><h3> التثبيت على آيفون</h3><ol><li>افتح الرابط بـ <b>Safari</b></li><li>اضغط زر <b>المشاركة</b> تحت الشاشة</li><li>اختار <b>إضافة إلى الشاشة الرئيسية</b> واضغط <b>إضافة</b></li></ol></div>
+  </div>
+</div></main>
+<footer>المنصة شغّالة على أندرويد وآيفون والكمبيوتر، وبتتحدّث لحالها.</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const base=location.origin;
+for(const k of ["app","admin"]){const u=base+"/"+k+"/";document.getElementById("url-"+k).textContent=u;
+  try{new QRCode(document.getElementById("qr-"+k),{text:u,width:192,height:192,colorDark:"#0c2440",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M})}catch(e){}}
+document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=async()=>{const u=base+"/"+b.dataset.copy+"/";try{await navigator.clipboard.writeText(u);b.textContent="انسخ ✓"}catch(e){prompt("انسخ الرابط:",u)}setTimeout(()=>b.textContent="نسخ الرابط",2000)});
+fetch("/api/catalog").then(r=>r.json()).then(c=>{if(c.settings?.shop){document.getElementById("shop").textContent=c.settings.shop}}).catch(()=>{});
+</script>
+</body>
+</html>

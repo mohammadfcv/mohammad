@@ -1,0 +1,9 @@
+name = "aman-platform"
+main = "index.js"
+compatibility_date = "2024-09-23"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "aman-platform-db"
+database_id = "3637d55c-4333-4e6d-a815-c1dd73222d7a"
