@@ -338,3 +338,14 @@ textarea.input{min-height:92px;resize:none}
 
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+/* ---------- install ask ---------- */
+.ask{display:flex;flex-direction:column;gap:14px}
+.ask-head{display:flex;gap:14px;align-items:center;padding:4px 0 6px}
+.ask-head img{width:64px;height:64px;border-radius:16px;box-shadow:var(--shadow)}
+.ask-head b{display:block;font-family:var(--f-display);font-size:18px}
+.ask-head span{font-size:12.5px;color:var(--muted);direction:ltr;display:block;text-align:right}
+.ask h2{font-size:21px}
+.ask-go{font-size:17px;padding:17px}
+.ask-arrow{display:grid;place-items:center;color:var(--amber);animation:nudge 1.1s ease-in-out infinite}
+.ask-arrow svg{width:34px;height:34px;stroke-width:3}
+@keyframes nudge{50%{transform:translateY(8px)}}

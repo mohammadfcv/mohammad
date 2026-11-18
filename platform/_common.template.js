@@ -55,5 +55,41 @@ async function doInstall(){
    <div><i>2</i><span>اختار <b>إضافة إلى الشاشة الرئيسية</b></span></div><div><i>3</i><span>اضغط <b>إضافة</b>، وبيطلع التطبيق بين تطبيقاتك</span></div></div>
    <button class="btn ink" data-act="close-sheet">تمام</button>`)}
 
+/* ---------- ask to install as soon as the link opens ---------- */
+const UA=navigator.userAgent;
+const inAppBrowser=()=>/FBAN|FBAV|FB_IAB|Instagram|Line\/|Snapchat|TikTok|musical_ly|Twitter|; wv\)/i.test(UA);
+const iosSafari=()=>isIOS()&&/Safari/i.test(UA)&&!/CriOS|FxiOS|EdgiOS|OPiOS|GSA\//i.test(UA);
+const appIcon=()=>document.querySelector('link[rel="apple-touch-icon"]')?.href||"";
+const appName=()=>document.querySelector('meta[name="apple-mobile-web-app-title"]')?.content||document.title;
+let askShown=false;
+function installAsk(kind){
+  if(askShown||isStandalone())return;
+  const until=LS.get("inst_later",0);if(Date.now()<until)return;
+  askShown=true;
+  const head=`<div class="ask-head"><img src="${appIcon()}" alt=""><div><b>${esc(appName())}</b><span>${location.host}</span></div></div>`;
+  let body;
+  if(kind==="android")body=`<h2>تثبيت التطبيق على جوالك؟</h2><p class="muted small">بيصير عندك أيقونة على الشاشة الرئيسية، وبيفتح متل أي تطبيق. بدون متجر وبحجم صغير كتير.</p>
+    <button class="btn ask-go" data-act="ask-install">${IC.plus} ثبّت التطبيق الآن</button>`;
+  else if(kind==="ios")body=`<h2>ثبّت التطبيق على الآيفون</h2><p class="muted small">خطوتين بس، وبيطلع التطبيق بين تطبيقاتك:</p>
+    <div class="ios-steps"><div><i>1</i><span>اضغط زر <b>المشاركة</b> <svg style="display:inline;vertical-align:-4px" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v8h14v-8"/></svg> تحت الشاشة</span></div>
+    <div><i>2</i><span>اختار <b>إضافة إلى الشاشة الرئيسية</b> ثم <b>إضافة</b></span></div></div>
+    <div class="ask-arrow" aria-hidden="true">${IC.back.replace("m9 6 6 6-6 6","m6 9 6 6 6-6")}</div>`;
+  else body=`<h2>افتح الرابط بالمتصفح لتثبّت التطبيق</h2><p class="muted small">التطبيق ما بينثبّت من جوا ${isIOS()?"هالتطبيق":"هالمتصفح"}. انسخ الرابط وافتحو بـ <b>${isIOS()?"Safari":"Chrome"}</b>.</p>
+    <div class="row"><input class="input num small" dir="ltr" readonly value="${location.origin+location.pathname}" id="ask-link"><button class="btn sm" style="width:auto" data-act="ask-copy">نسخ</button></div>`;
+  openSheet(`<div class="ask">${head}${body}<button class="btn soft" data-act="ask-later">لاحقاً</button></div>`);
+}
+function askLater(){LS.set("inst_later",Date.now()+2*86400e3);closeSheet()}
+document.addEventListener("click",async e=>{const t=e.target.closest("[data-act]");if(!t)return;const a=t.dataset.act;
+  if(a==="ask-install"){e.stopImmediatePropagation();if(deferredPrompt){deferredPrompt.prompt();const c=await deferredPrompt.userChoice.catch(()=>({}));deferredPrompt=null;closeSheet();if(c.outcome!=="accepted")LS.set("inst_later",Date.now()+86400e3)}else closeSheet()}
+  else if(a==="ask-later"){e.stopImmediatePropagation();askLater()}
+  else if(a==="ask-copy"){e.stopImmediatePropagation();const i=document.getElementById("ask-link");try{await navigator.clipboard.writeText(i.value);t.textContent="انسخ ✓"}catch(x){i.select()}}
+},true);
+window.addEventListener("installable",()=>setTimeout(()=>installAsk("android"),600));
+window.addEventListener("appinstalled",()=>closeSheet());
+window.addEventListener("load",()=>{if(isStandalone())return;
+  if(inAppBrowser())setTimeout(()=>installAsk("browser"),900);
+  else if(iosSafari())setTimeout(()=>installAsk("ios"),1200);
+  else if(isIOS())setTimeout(()=>installAsk("browser"),1200);});
+
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
 function setBadge(n){try{if(navigator.setAppBadge){n?navigator.setAppBadge(n):navigator.clearAppBadge()}}catch(e){}}
